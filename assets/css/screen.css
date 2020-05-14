@@ -1,0 +1,76 @@
+/*
+$color-1: #79bffa;
+$color-2: #0f3389;
+$color-3: #4392f1;
+$color-4: #ffffff;
+$color-5: #006494;
+*/
+
+html, body {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    scroll-behavior: smooth;
+}
+
+header {
+    height: 90px;
+    background: #4392f1;
+    background: -moz-linear-gradient(138deg, #79bffa 40%, #0f3389 75%);
+    background: -webkit-linear-gradient(138deg, #79bffa 40%, #0f3389 75%);
+    background: linear-gradient(138deg, #79bffa 40%, #0f3389 75%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#79bffa, endColorstr=#0f3389, GradientType=1);
+
+    border-bottom: #0f3389 5px solid;
+}
+
+header h1 {
+    color: #0f3389;
+    letter-spacing: 5px;
+}
+
+header .logo {
+    background: no-repeat url('../media/SMU_logo.png') center center;
+    background-size: contain;
+    width: 70px;
+    height: 100%;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+}
+
+main {
+    background-color: #F9F5FF;
+    height: calc(100% - 90px);
+}
+
+main > .container > .row {
+    margin: 0;
+}
+
+main > .container > .row > * {
+    padding: 1.5rem 2.5rem;
+}
+
+main > .container > .row > * > * {
+    background-color: #ffffff;
+    box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+main > .container > .row > * > .wrapper {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+main > .container > .row > * > .wrapper > img {
+    object-fit: contain;
+    width: 100%;
+}
+
+.text-light {
+    color: #79bffa !important;
+}
