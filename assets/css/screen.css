@@ -55,9 +55,12 @@ main > .container > .row > * {
 }
 
 main > .container > .row > * > * {
-    background-color: #ffffff;
     box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
+}
+
+.no-shadow {
+    box-shadow: none !important;
 }
 
 main > .container > .row > * > .wrapper {
@@ -73,4 +76,60 @@ main > .container > .row > * > .wrapper > img {
 
 .text-light {
     color: #79bffa !important;
+}
+
+.btn-primary {
+    background-color: #0f3389;
+    border-color: #0f3389;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: #0f3389;
+    border-color: #0f3389;
+}
+
+.btn {
+    border-width: 2px;
+    border-radius: 18px !important;
+}
+
+.btn-danger {
+    background-color: #f4516c;
+    border-color: #f4516c;
+}
+
+.btn-danger:hover {
+    background-color: transparent;
+    color: #f4516c;
+    border-color: #f4516c;
+}
+
+.btn-success:hover {
+    background-color: transparent;
+    color: #28a745;
+    border-color: #28a745;
+}
+
+#btn_accept, #btn_decline, #btn_next {
+    width: 29%;
+    box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
+}
+
+#btn_next:disabled {
+    background: #96dda6;
+    border-color: #96dda6;
+    color: white;
+}
+
+#btn_accept:disabled {
+    background: #caccda;
+    border-color: #caccda;
+    color: white;
+}
+
+#btn_decline:disabled {
+    background: #ffcfd7;
+    border-color: #ffcfd7;
+    color: white;
 }

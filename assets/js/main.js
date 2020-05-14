@@ -12,6 +12,14 @@ ws.addEventListener("close", onWSClose);
 ws.addEventListener("error", onWSError);
 ws.addEventListener("message", onWSMessage);
 
+document.addEventListener("DOMContentLoaded", init);
+
+function init(e) {
+    document.querySelector('#btn_accept').addEventListener("click", onVehicleAccept);
+    document.querySelector('#btn_decline').addEventListener("click", onVehicleDecline);
+    document.querySelector('#btn_next').addEventListener("click", onVehicleNext);
+}
+
 function onWSOpen(e) {
     console.log("Connection opened!");
 
@@ -63,14 +71,40 @@ function onTagMessage(tag) {
 
 function onDetailMessage(vehicle) {
     if(vehicle !== null) {
+        document.querySelector('#btn_next').disabled = true;
+        document.querySelector('#btn_accept').disabled = false;
+        document.querySelector('#btn_decline').disabled = false;
         vehicleId = vehicle.id;
         document.querySelector('#owner_pic').src = "http://" + SERVER_URL + "/api/vehicles/owners/" + vehicle.vehicle_owner.id + "/picture";
     } else {
+        document.querySelector('#btn_next').disabled = true;
+        document.querySelector('#btn_accept').disabled = true;
+        document.querySelector('#btn_decline').disabled = false;
         document.querySelector('#owner_pic').src = "assets/images/unknown-vehicle.png";
     }
 }
 
-function onVehicleAccept() {
-    getNextTag = true;
+function onVehicleAccept(e) {
+    document.querySelector('#btn_next').disabled = false;
+    document.querySelector('#btn_accept').disabled = true;
+    document.querySelector('#btn_decline').disabled = true;
+    document.querySelector('#owner_pic').src = "assets/images/accepted.jpg";
+
     //todo
+}
+
+function onVehicleDecline(e) {
+    document.querySelector('#btn_next').disabled = false;
+    document.querySelector('#btn_accept').disabled = true;
+    document.querySelector('#btn_decline').disabled = true;
+    document.querySelector('#owner_pic').src = "assets/images/declined.jpg";
+}
+
+function onVehicleNext(e) {
+    document.querySelector('#btn_next').disabled = true;
+    document.querySelector('#btn_accept').disabled = true;
+    document.querySelector('#btn_decline').disabled = true;
+    document.querySelector('#owner_pic').src = "assets/images/rfid-waiting.gif";
+
+    getNextTag = true;
 }
