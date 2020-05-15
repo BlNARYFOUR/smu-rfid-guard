@@ -25,7 +25,8 @@
 <main class="pt-5 pb-5">
     <div class="container h-100">
         <div class="row h-100">
-            <div class="col-6 h-100">
+            <div class="col-6 h-100 position-relative">
+                <span id="vip" class="position-absolute"></span>
                 <div class="wrapper">
                     <img id="owner_pic" src="assets/images/rfid-waiting.gif" alt="Photo of Vehicle Owner" title="Photo of Vehicle Owner" />
                 </div>
@@ -36,25 +37,7 @@
                     <button id="btn_accept" class="btn btn-primary text-uppercase" disabled="disabled">Accept</button>
                     <button id="btn_decline" class="btn btn-danger text-uppercase" disabled="disabled">Decline</button>
                 </div>
-                <div class="w-100 mt-4 flex-fill no-shadow">
-                    <h4 class="pb-2 text-light font-weight-bold">Owner</h4>
-                    <div class="row pb-1">
-                        <span class="text-primary font-weight-bold col-2">Name:</span><span class="col-10">Brend Adri Lambert</span>
-                    </div>
-                    <div class="row pb-1">
-                        <span class="text-primary font-weight-bold col-2">Type:</span><span class="col-4">Faculty</span>
-                        <span class="text-primary font-weight-bold col-2">ID:</span><span class="col-4">0123456789</span>
-                    </div>
-                    <h4 class="mt-5 pb-2 text-light font-weight-bold" title="Pass Activated"><span class="mr-2 pt-1 pb-1 font-weight-light">&#10004;<!--&#10060;--></span>Vehicle</h4>
-                    <div class="row pb-1">
-                        <span class="text-primary font-weight-bold col-2">Type:</span><span class="col-4">Car</span>
-                        <span class="text-primary font-weight-bold col-2">Model:</span><span class="col-4">Toyota</span>
-                    </div>
-                    <div class="row pb-1">
-                        <span class="text-primary font-weight-bold col-2">Plate:</span><span class="col-4">ABC123</span>
-                        <span class="text-primary font-weight-bold col-2">Licence:</span><span class="col-4">1234567</span>
-                    </div>
-                </div>
+                <div id="detail" class="w-100 mt-4 flex-fill no-shadow"></div>
             </div>
         </div>
     </div>

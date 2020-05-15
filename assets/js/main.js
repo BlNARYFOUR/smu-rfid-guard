@@ -76,6 +76,28 @@ function onDetailMessage(vehicle) {
         document.querySelector('#btn_decline').disabled = false;
         document.querySelector('#owner_pic').src = "http://" + SERVER_URL + "/api/vehicles/owners/" + vehicle.vehicle_owner.id + "/picture";
         vehicleId = vehicle.id;
+
+        document.querySelector('#detail').innerHTML = "<h4 class=\"pb-2 text-light font-weight-bold\">Owner</h4>\n" +
+            "<div class=\"row pb-1\">\n" +
+            "   <span class=\"text-primary font-weight-bold col-2\">Name:</span><span class=\"col-10\">" + vehicle.vehicle_owner.first_name + " " + (vehicle.vehicle_owner.middle_name ? vehicle.vehicle_owner.middle_name + " " : "") + vehicle.vehicle_owner.last_name + "</span>\n" +
+            "</div>\n" +
+            "<div class=\"row pb-1\">\n" +
+            "   <span class=\"text-primary font-weight-bold col-2\">Type:</span><span class=\"col-4\">" + vehicle.vehicle_owner.owner_type + "</span>\n" +
+            "   <span class=\"text-primary font-weight-bold col-2\">ID:</span><span class=\"col-4\">" + (vehicle.vehicle_owner.id_number ? vehicle.vehicle_owner.id_number : "/") + "</span>\n" +
+            "</div>\n" +
+            "<h4 class=\"mt-5 pb-2 text-light font-weight-bold\" title=\"" + (vehicle.pass_valid ? "Vehicle Pass Active" : "Vehicle Pass Invalid") + "\"><span class=\"mr-2 pt-1 pb-1 font-weight-light\">" + (vehicle.pass_valid ? "&#10004;" : "&#10060;") + "</span>Vehicle</h4>\n" +
+            "<div class=\"row pb-1\">\n" +
+            "   <span class=\"text-primary font-weight-bold col-2\">Type:</span><span class=\"col-4\">" + vehicle.vehicle_type + "</span>\n" +
+            "   <span class=\"text-primary font-weight-bold col-2\">Model:</span><span class=\"col-4\">" + vehicle.model + "</span>\n" +
+            "</div>\n" +
+            "<div class=\"row pb-1\">\n" +
+            "   <span class=\"text-primary font-weight-bold col-2\">Plate:</span><span class=\"col-4\">" + vehicle.plate_number + "</span>\n" +
+            "   <span class=\"text-primary font-weight-bold col-2\">Licence:</span><span class=\"col-4\">" + vehicle.licence_number + "</span>\n" +
+            "</div>";
+
+        if(vehicle.vehicle_owner.is_vip) {
+            document.querySelector('#vip').classList.add('active');
+        }
     } else {
         document.querySelector('#btn_next').disabled = true;
         document.querySelector('#btn_accept').disabled = true;
@@ -85,19 +107,24 @@ function onDetailMessage(vehicle) {
 }
 
 function onVehicleAccept(e) {
-    document.querySelector('#btn_next').disabled = false;
-    document.querySelector('#btn_accept').disabled = true;
-    document.querySelector('#btn_decline').disabled = true;
+    onVehicleDeclineOrAccept();
     document.querySelector('#owner_pic').src = "assets/images/accepted.jpg";
+    document.querySelector('#detail').innerHTML = "<h4 class=\"pb-2 text-success font-weight-bold\">Vehicle has been accepted.</h4>";
 
     //todo
 }
 
 function onVehicleDecline(e) {
+    onVehicleDeclineOrAccept();
+    document.querySelector('#owner_pic').src = "assets/images/declined.jpg";
+    document.querySelector('#detail').innerHTML = "<h4 class=\"pb-2 text-danger font-weight-bold\">Vehicle has been declined.</h4>";
+}
+
+function onVehicleDeclineOrAccept() {
+    document.querySelector('#vip').classList.remove('active');
     document.querySelector('#btn_next').disabled = false;
     document.querySelector('#btn_accept').disabled = true;
     document.querySelector('#btn_decline').disabled = true;
-    document.querySelector('#owner_pic').src = "assets/images/declined.jpg";
 }
 
 function onVehicleNext(e) {
@@ -105,6 +132,7 @@ function onVehicleNext(e) {
     document.querySelector('#btn_accept').disabled = true;
     document.querySelector('#btn_decline').disabled = true;
     document.querySelector('#owner_pic').src = "assets/images/rfid-waiting.gif";
+    document.querySelector('#detail').innerHTML = "<h4 class=\"pb-2 text-muted font-weight-bold\">Waiting for a vehicle...</h4>";
 
     getNextTag = true;
 }
