@@ -80,7 +80,7 @@ function onDetailMessage(vehicle) {
         document.querySelector('#btn_next').disabled = true;
         document.querySelector('#btn_accept').disabled = true;
         document.querySelector('#btn_decline').disabled = false;
-        document.querySelector('#owner_pic').src = "assets/images/unknown-vehicle.png";
+        document.querySelector('#owner_pic').src = "assets/images/unknown-vehicle.jpg";
     }
 }
 
