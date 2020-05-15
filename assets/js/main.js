@@ -74,8 +74,8 @@ function onDetailMessage(vehicle) {
         document.querySelector('#btn_next').disabled = true;
         document.querySelector('#btn_accept').disabled = false;
         document.querySelector('#btn_decline').disabled = false;
-        vehicleId = vehicle.id;
         document.querySelector('#owner_pic').src = "http://" + SERVER_URL + "/api/vehicles/owners/" + vehicle.vehicle_owner.id + "/picture";
+        vehicleId = vehicle.id;
     } else {
         document.querySelector('#btn_next').disabled = true;
         document.querySelector('#btn_accept').disabled = true;

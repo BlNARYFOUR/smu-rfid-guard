@@ -64,18 +64,21 @@ main > .container > .row > * > * {
 }
 
 main > .container > .row > * > .wrapper {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    /*height: 100%;*/
     overflow: hidden;
 }
 
 main > .container > .row > * > .wrapper > img {
-    object-fit: contain;
     width: 100%;
 }
 
 .text-light {
     color: #79bffa !important;
+}
+
+.text-primary {
+    color: #0f3389 !important;
 }
 
 .btn-primary {
