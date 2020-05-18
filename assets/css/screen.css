@@ -118,19 +118,19 @@ main > .container > .row > * > .wrapper > img {
     box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
 }
 
-#btn_next:disabled {
+.btn-success:disabled {
     background: #96dda6;
     border-color: #96dda6;
     color: white;
 }
 
-#btn_accept:disabled {
+.btn-primary:disabled {
     background: #caccda;
     border-color: #caccda;
     color: white;
 }
 
-#btn_decline:disabled {
+.btn-danger:disabled {
     background: #ffcfd7;
     border-color: #ffcfd7;
     color: white;
