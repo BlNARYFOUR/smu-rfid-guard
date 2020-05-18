@@ -107,11 +107,22 @@ function onDetailMessage(vehicle) {
 }
 
 function onVehicleAccept(e) {
+    if(ws.readyState === ws.OPEN) {
+        ws.send(JSON.stringify({
+            address: "smugps.actions.accept",
+            data: {
+                vehicle_id: vehicleId
+            }
+        }));
+    } else {
+        alert("Could not log the vehicle. Try reloading the page.");
+        onVehicleDecline(null);
+        return;
+    }
+
     onVehicleDeclineOrAccept();
     document.querySelector('#owner_pic').src = "assets/images/accepted.jpg";
     document.querySelector('#detail').innerHTML = "<h4 class=\"pb-2 text-success font-weight-bold\">Vehicle has been accepted.</h4>";
-
-    //todo
 }
 
 function onVehicleDecline(e) {
