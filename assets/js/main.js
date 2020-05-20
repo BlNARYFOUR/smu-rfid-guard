@@ -3,6 +3,7 @@
 const SERVER_URL = "backend.smu-rfid.local";
 
 let vehicleId = null;
+let vehicleTag = null;
 
 let getNextTag = true;
 let ws = new WebSocket("ws://" + SERVER_URL + ":4321");
@@ -58,6 +59,8 @@ function onTagMessage(tag) {
         getNextTag = false;
         console.log("NEXT TAG ACCEPTED");
 
+        vehicleTag = tag;
+
         ws.send(JSON.stringify({
             address: "smugps.actions.detail",
             data: {
@@ -75,6 +78,7 @@ function onDetailMessage(vehicle) {
         document.querySelector('#btn_accept').disabled = false;
         document.querySelector('#btn_decline').disabled = false;
         document.querySelector('#owner_pic').src = "http://" + SERVER_URL + "/api/vehicles/owners/" + vehicle.vehicle_owner.id + "/picture";
+
         vehicleId = vehicle.id;
 
         document.querySelector('#detail').innerHTML = "<h4 class=\"pb-2 text-light font-weight-bold\">Owner</h4>\n" +
@@ -100,9 +104,10 @@ function onDetailMessage(vehicle) {
         }
     } else {
         document.querySelector('#btn_next').disabled = true;
-        document.querySelector('#btn_accept').disabled = true;
+        document.querySelector('#btn_accept').disabled = false;
         document.querySelector('#btn_decline').disabled = false;
         document.querySelector('#owner_pic').src = "assets/images/unknown-vehicle.jpg";
+        document.querySelector('#detail').innerHTML = "<h4 class=\"pb-2 font-weight-bold\">Vehicle is not registered.</h4>";
     }
 }
 
@@ -111,7 +116,8 @@ function onVehicleAccept(e) {
         ws.send(JSON.stringify({
             address: "smugps.actions.accept",
             data: {
-                vehicle_id: vehicleId
+                vehicle_id: vehicleId,
+                rfid_tag: vehicleTag
             }
         }));
     } else {
@@ -139,6 +145,9 @@ function onVehicleDeclineOrAccept() {
 }
 
 function onVehicleNext(e) {
+    vehicleTag = null;
+    vehicleId = null;
+
     document.querySelector('#btn_next').disabled = true;
     document.querySelector('#btn_accept').disabled = true;
     document.querySelector('#btn_decline').disabled = true;
