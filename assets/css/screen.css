@@ -80,61 +80,61 @@ main > .container > .row > * > .wrapper > img {
     color: #0f3389 !important;
 }
 
-.btn-primary {
-    background-color: #0f3389;
-    border-color: #0f3389;
-}
+/*.btn-primary {*/
+    /*background-color: #0f3389;*/
+    /*border-color: #0f3389;*/
+/*}*/
 
-.btn-primary:hover {
-    background-color: transparent;
-    color: #0f3389;
-    border-color: #0f3389;
-}
+/*.btn-primary:hover {*/
+    /*background-color: transparent;*/
+    /*color: #0f3389;*/
+    /*border-color: #0f3389;*/
+/*}*/
 
-.btn {
-    border-width: 2px;
-    border-radius: 18px !important;
-}
+/*.btn {*/
+    /*border-width: 2px;*/
+    /*border-radius: 18px !important;*/
+/*}*/
 
-.btn-danger {
-    background-color: #f4516c;
-    border-color: #f4516c;
-}
+/*.btn-danger {*/
+    /*background-color: #f4516c;*/
+    /*border-color: #f4516c;*/
+/*}*/
 
-.btn-danger:hover {
-    background-color: transparent;
-    color: #f4516c;
-    border-color: #f4516c;
-}
+/*.btn-danger:hover {*/
+    /*background-color: transparent;*/
+    /*color: #f4516c;*/
+    /*border-color: #f4516c;*/
+/*}*/
 
-.btn-success:hover {
-    background-color: transparent;
-    color: #28a745;
-    border-color: #28a745;
-}
+/*.btn-success:hover {*/
+    /*background-color: transparent;*/
+    /*color: #28a745;*/
+    /*border-color: #28a745;*/
+/*}*/
 
-#btn_accept, #btn_decline, #btn_next {
-    width: 29%;
-    box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
-}
+/*#btn_accept, #btn_decline, #btn_next {*/
+    /*width: 29%;*/
+    /*box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);*/
+/*}*/
 
-.btn-success:disabled {
-    background: #96dda6;
-    border-color: #96dda6;
-    color: white;
-}
+/*.btn-success:disabled {*/
+    /*background: #96dda6;*/
+    /*border-color: #96dda6;*/
+    /*color: white;*/
+/*}*/
 
-.btn-primary:disabled {
-    background: #caccda;
-    border-color: #caccda;
-    color: white;
-}
+/*.btn-primary:disabled {*/
+    /*background: #caccda;*/
+    /*border-color: #caccda;*/
+    /*color: white;*/
+/*}*/
 
-.btn-danger:disabled {
-    background: #ffcfd7;
-    border-color: #ffcfd7;
-    color: white;
-}
+/*.btn-danger:disabled {*/
+    /*background: #ffcfd7;*/
+    /*border-color: #ffcfd7;*/
+    /*color: white;*/
+/*}*/
 
 #vip {
     background: white no-repeat url('../media/vip.png') center center;
