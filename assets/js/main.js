@@ -55,9 +55,11 @@ function onWSMessage(e) {
     if(data.address === "smugps.actions.connect") {
         getRfidReaders();
     } else if(data.address === "smugps.actions.tag") {
-        onTagMessage(data.data.tag, data.data.action);
+        onTagMessage(data.data.tag, data.data.action, data.data.ws_id);
     } else if(data.address === "smugps.actions.detail") {
         onDetailMessage(data.data.vehicle);
+    } else if(data.address === "smugps.actions.readers") {
+        onReaderMessage(data.data.rfid_reader_list);
     }
 }
 
@@ -67,19 +69,23 @@ function getRfidReaders() {
     }));
 }
 
-function onTagMessage(tag, action) {
-    console.log("NEXT TAG ACCEPTED");
+function onTagMessage(tag, action, wsID) {
+    if(document.querySelector("#reader").value === wsID.toString() || document.querySelector("#reader").value === "ALL") {
+        console.log("NEXT TAG ACCEPTED");
 
-    vehicleId = null;
-    vehicleTag = tag;
-    vehicleAction = action;
+        vehicleId = null;
+        vehicleTag = tag;
+        vehicleAction = action;
 
-    ws.send(JSON.stringify({
-        address: "smugps.actions.detail",
-        data: {
-            tag: tag
-        }
-    }));
+        ws.send(JSON.stringify({
+            address: "smugps.actions.detail",
+            data: {
+                tag: tag
+            }
+        }));
+    } else {
+        console.log("NEXT TAG DECLINED");
+    }
 }
 
 function onDetailMessage(vehicle) {
@@ -119,6 +125,12 @@ function onDetailMessage(vehicle) {
 
     acceptVehicle();
     vehicleTimeout = setTimeout(nextVehicle, 255000);
+}
+
+function onReaderMessage(readerList) {
+    readerList.forEach((reader) => {
+        document.querySelector("#reader").innerHTML += "<option value='" + reader.id + "'>" + reader.id + "</option>";
+    });
 }
 
 function acceptVehicle() {

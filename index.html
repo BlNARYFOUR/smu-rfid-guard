@@ -37,12 +37,13 @@
                 </div>
             </div>
             <div class="col-6 pl-0 d-flex flex-column">
-                <!--div class="w-100 pb-3 no-shadow d-flex flex-row justify-content-between">
-                    <button id="btn_next" class="btn btn-primary text-uppercase" disabled="disabled">Next</button>
-                    <button id="btn_accept" class="btn btn-success text-uppercase" disabled="disabled">Accept</button>
-                    <button id="btn_decline" class="btn btn-danger text-uppercase" disabled="disabled">Decline</button>
-                </div-->
-                <div id="detail" class="w-100 flex-fill no-shadow"></div><!-- mt-4 in class list deleted -->
+                <div class="w-100 pb-0 mb-0 no-shadow d-flex flex-row justify-content-between form-group">
+                    <label for="reader" class="w-75 pt-2 pb-0 text-right">Listen to Reader:</label>
+                    <select id="reader" class="w-auto form-control" title="reader ID">
+                        <option value="ALL">All</option>
+                    </select>
+                </div>
+                <div id="detail" class="w-100 mt-4 flex-fill no-shadow"></div><!-- mt-4 in class list deleted -->
             </div>
         </div>
     </div>
