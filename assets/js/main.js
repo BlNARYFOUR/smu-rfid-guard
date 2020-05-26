@@ -1,10 +1,11 @@
 "use strict";
 
-//const SERVER_URL = "backend.smu-rfid.local";
-const SERVER_URL = "192.168.0.109";
+const SERVER_URL = "backend.smu-rfid.local";
+//const SERVER_URL = "192.168.0.30";
 
 let vehicleId = null;
 let vehicleTag = null;
+let vehicleAction = null;
 let vehicleTimeout = null;
 let doubleClickBegin = null;
 
@@ -51,18 +52,27 @@ function onWSMessage(e) {
 
     console.log("Message received:", data);
 
-    if(data.address === "smugps.actions.tag") {
-        onTagMessage(data.data.tag);
+    if(data.address === "smugps.actions.connect") {
+        getRfidReaders();
+    } else if(data.address === "smugps.actions.tag") {
+        onTagMessage(data.data.tag, data.data.action);
     } else if(data.address === "smugps.actions.detail") {
         onDetailMessage(data.data.vehicle);
     }
 }
 
-function onTagMessage(tag) {
+function getRfidReaders() {
+    ws.send(JSON.stringify({
+        address: "smugps.actions.readers"
+    }));
+}
+
+function onTagMessage(tag, action) {
     console.log("NEXT TAG ACCEPTED");
 
     vehicleId = null;
     vehicleTag = tag;
+    vehicleAction = action;
 
     ws.send(JSON.stringify({
         address: "smugps.actions.detail",
@@ -117,7 +127,8 @@ function acceptVehicle() {
             address: "smugps.actions.accept",
             data: {
                 vehicle_id: vehicleId,
-                rfid_tag: vehicleTag
+                rfid_tag: vehicleTag,
+                action: vehicleAction
             }
         }));
     } else {
